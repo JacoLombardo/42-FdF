@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:23:18 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/06 12:34:13 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:35:38 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,31 @@ t_matrix	***ft_free_that_matrix(t_matrix ***matrix, int i, int j, t_size *size)
 	int	l;
 
 	k = i - 1;
+    //ft_printf("inside: i:%i, j:%i\n", i, j);
 	if (j)
 		k = i;
-	while (k-- >= 0)
+	while (k >= 0)
 	{
 		l = -1;
 		if (j && k == i)
 		{
 			while (++l < j)
+			{
 				free(matrix[k][l]);
+                ft_printf("Freed column: x:%i, y:%i\n", k, l);
+			}
 		}
 		else
 		{
 			while (++l < size->y)
+			{
 				free(matrix[k][l]);
+                ft_printf("Freed column: x:%i, y:%i\n", k, l);
+			}
 		}
 		free(matrix[k]);
-		//k--;
+        ft_printf("Freed row: x:%i\n", k);
+		k--;
 	}
     free(matrix);
     matrix = NULL;
@@ -82,7 +90,7 @@ t_matrix	***ft_malloc(t_size *size)
 		{
 			matrix[i][j] = (t_matrix *)malloc(1 * sizeof(t_matrix));
             ft_printf("Malloc column: x:%i, y:%i\n", i, j);
-            if (i == 1 && j== 6)
+            if (i == 3 && j== 6)
             {
                 free(matrix[i][j]);
                 return (ft_free_that_matrix(matrix, i, j, size));
