@@ -12,7 +12,7 @@
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-LFLAGS	= -L$(MINILIBX_PATH) -lminilibx -I$(MINILIBX_PATH) -L/usr/lib -lXext -lX11 -lm -lz
+LFLAGS	= -L$(MINILIBX_PATH) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 SRCS = fdf.c source/calculate_map.c source/parse_map.c source/malloc.c
 HEADER = fdf.h
 NAME = fdf
@@ -24,7 +24,7 @@ MINILIBX = $(MINILIBX_PATH)/libmlx.a
 all: $(NAME)
 
 $(NAME): $(SRCS) $(LIBFT) $(MINILIBX)
-	$(CC) $(CFLAGS) -o $@ $(SRCS) -L$(LIBFT_PATH) -lft -L$(MINILIBX_PATH) -lft
+	$(CC) $(CFLAGS) -o $@ $(SRCS) -L$(LIBFT_PATH) -lft $(LFLAGS)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_PATH)
