@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:24:19 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/06 11:26:54 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:42:42 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FDF_H
 
 # include "libft/libft.h"
+# include "minilibx/mlx.h"
+# include "minilibx/mlx_int.h"
 # include <fcntl.h>
 # include <unistd.h>
 

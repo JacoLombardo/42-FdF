@@ -10,30 +10,35 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc -g
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
-LFLAGS	= -Lincludes/mlx_linux -lmlx_Linux -Iincludes/mlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L$(LIBFT_PATH) -lft
+LFLAGS	= -L$(MINILIBX_PATH) -lminilibx -I$(MINILIBX_PATH) -L/usr/lib -lXext -lX11 -lm -lz
 SRCS = fdf.c source/calculate_map.c source/parse_map.c source/malloc.c
 HEADER = fdf.h
 NAME = fdf
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a
-MINILIBX_PATH = minilibx-linux
-MINILIBX = $(MINILIBX_PATH)/libft.a
+MINILIBX_PATH = minilibx
+MINILIBX = $(MINILIBX_PATH)/libmlx.a
 
 all: $(NAME)
 
-$(NAME): $(SRCS) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(SRCS) -L$(LIBFT_PATH) -lft
+$(NAME): $(SRCS) $(LIBFT) $(MINILIBX)
+	$(CC) $(CFLAGS) -o $@ $(SRCS) -L$(LIBFT_PATH) -lft -L$(MINILIBX_PATH) -lft
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_PATH)
 
+$(MINILIBX):
+	$(MAKE) -C $(MINILIBX_PATH)
+
 clean:
 	$(MAKE) -C $(LIBFT_PATH) clean
+	$(MAKE) -C $(MINILIBX_PATH) clean
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_PATH) fclean
+	$(MAKE) -C $(MINILIBX_PATH) fclean
 	rm -f $(NAME)
 
 re: fclean all

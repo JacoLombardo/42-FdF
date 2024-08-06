@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 19:20:02 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/06 11:24:03 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/06 13:50:21 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,24 @@ void	ft_free_tab(char **tab)
 unsigned int	ft_hex_to_int(char *hex)
 {
 	unsigned int	result;
-	const char		*ptr = hex;
+	int				i;
 
 	result = 0;
-	// Skip the "0x" prefix if present
-	if (ptr[0] == '0' && (ptr[1] == 'x' || ptr[1] == 'X'))
-		ptr += 2;
-	// Iterate over each character in the string
-	while (*ptr)
+	i = 0;
+	if (hex[0] == '0' && (hex[1] == 'x' || hex[1] == 'X'))
+		i = 2;
+	while (hex[i])
 	{
 		result *= 16;
-		// Shift the current result left by 4 bits (multiply by 16)
-		if (*ptr >= '0' && *ptr <= '9')
-		{
-			result += *ptr - '0';
-		}
-		else if (*ptr >= 'a' && *ptr <= 'f')
-		{
-			result += *ptr - 'a' + 10;
-		}
-		else if (*ptr >= 'A' && *ptr <= 'F')
-		{
-			result += *ptr - 'A' + 10;
-		}
+		if (hex[i] >= '0' && hex[i] <= '9')
+			result += hex[i] - '0';
+		else if (hex[i] >= 'a' && hex[i] <= 'f')
+			result += hex[i] - 'a' + 10;
+		else if (hex[i] >= 'A' && hex[i] <= 'F')
+			result += hex[i] - 'A' + 10;
 		else
-		{
-			// Handle invalid character
 			break ;
-		}
-		ptr++;
+		i++;
 	}
 	return (result);
 }
