@@ -10,10 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
+CC = cc -g
 CFLAGS = -Wall -Werror -Wextra
 LFLAGS	= -Lincludes/mlx_linux -lmlx_Linux -Iincludes/mlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L$(LIBFT_PATH) -lft
-SRCS = fdf.c source/calculate_map.c source/parse_map.c
+SRCS = fdf.c source/calculate_map.c source/parse_map.c source/malloc.c
 HEADER = fdf.h
 NAME = fdf
 LIBFT_PATH = libft

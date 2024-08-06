@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 19:20:02 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/02 19:23:28 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/06 11:24:03 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,30 +106,4 @@ void	ft_parse(char *map, t_matrix ***matrix)
 		i++;
 		free(line);
 	}
-}
-
-t_matrix	***ft_malloc(char *map)
-{
-	int			i;
-	int			j;
-	int			x;
-	int			y;
-	t_matrix	***matrix;
-
-	i = 0;
-	x = ft_get_rows(map);
-	y = ft_get_columns(map);
-	matrix = (t_matrix ***)malloc(x * sizeof(t_matrix **));
-	while (i < x)
-	{
-		j = 0;
-		matrix[i] = (t_matrix **)malloc(y * sizeof(t_matrix *));
-		while (j < y)
-		{
-			matrix[i][j] = (t_matrix *)malloc(1 * sizeof(t_matrix));
-			j++;
-		}
-		i++;
-	}
-	return (matrix);
 }
