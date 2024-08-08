@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:24:19 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/06 14:42:42 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:13:42 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ typedef struct s_size
 	int				x;
 	int				y;
 }					t_size;
+
+typedef struct s_image
+{
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}					t_image;
 
 /* parse_map */
 void				ft_free_tab(char **tab);
