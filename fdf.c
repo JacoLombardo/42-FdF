@@ -6,40 +6,29 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:23:32 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/08 16:20:47 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:49:51 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_mlx_pixel_put(t_image *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	ft_play(void)
+void	ft_init(t_matrix ***matrix)
 {
 	void	*mlx;
 	void	*window;
 	t_image	image;
-	int		width;
-	int		height;
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
-	width = 640;
-	height = 480;
+	(void)matrix;
 	mlx = mlx_init();
-	window = mlx_new_window(mlx, width, height, "FdF Window");
-	image.img = mlx_new_image(mlx, width, height);
+	window = mlx_new_window(mlx, WIDTH, HEIGHT, "FdF Window");
+	image.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
 			&image.line_length, &image.endian);
-	y = 240;
+	y = HEIGHT / 2;
 	x = 0;
-	while (x++ < 640)
+	while (x++ < WIDTH)
 		ft_mlx_pixel_put(&image, x, y, 0x00FF0000);
 	mlx_put_image_to_window(mlx, window, image.img, 0, 0);
 	mlx_loop(mlx);
@@ -55,7 +44,7 @@ void	fdf(char *map)
 	size->y = ft_get_columns(map);
 	matrix = ft_malloc(size);
 	ft_parse(map, matrix);
-	ft_play();
+	ft_init(matrix);
 	ft_free_matrix(matrix, size);
 	free(size);
 }

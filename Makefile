@@ -13,7 +13,7 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 LFLAGS	= -L$(MINILIBX_PATH) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
-SRCS = fdf.c source/calculate_map.c source/parse_map.c source/malloc.c
+SRCS = fdf.c source/calculate_map.c source/libx.c source/parse_map.c source/malloc.c
 HEADER = fdf.h
 NAME = fdf
 LIBFT_PATH = libft
@@ -38,7 +38,6 @@ clean:
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_PATH) fclean
-	$(MAKE) -C $(MINILIBX_PATH) fclean
 	rm -f $(NAME)
 
 re: fclean all
