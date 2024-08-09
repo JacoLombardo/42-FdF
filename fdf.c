@@ -6,32 +6,28 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:23:32 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/08 16:49:51 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:05:25 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_init(t_matrix ***matrix)
+void	ft_init(t_matrix ***matrix, t_size *size)
 {
-	void	*mlx;
-	void	*window;
+	t_vars	vars;
 	t_image	image;
-	int		x;
-	int		y;
 
 	(void)matrix;
-	mlx = mlx_init();
-	window = mlx_new_window(mlx, WIDTH, HEIGHT, "FdF Window");
-	image.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "FdF Window");
+	image.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
 			&image.line_length, &image.endian);
-	y = HEIGHT / 2;
-	x = 0;
-	while (x++ < WIDTH)
-		ft_mlx_pixel_put(&image, x, y, 0x00FF0000);
-	mlx_put_image_to_window(mlx, window, image.img, 0, 0);
-	mlx_loop(mlx);
+	ft_create_img(matrix, size, &image);
+	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
+	mlx_key_hook(vars.win, ft_handle_hooks, &vars);
+	mlx_hook(vars.win, 17, 0, close_window, NULL);
+	mlx_loop(vars.mlx);
 }
 
 void	fdf(char *map)
@@ -43,8 +39,8 @@ void	fdf(char *map)
 	size->x = ft_get_rows(map);
 	size->y = ft_get_columns(map);
 	matrix = ft_malloc(size);
-	ft_parse(map, matrix);
-	ft_init(matrix);
+	ft_parse(map, matrix, size);
+	ft_init(matrix, size);
 	ft_free_matrix(matrix, size);
 	free(size);
 }

@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 19:20:02 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/06 13:50:21 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:02:55 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ unsigned int	ft_hex_to_int(char *hex)
 	return (result);
 }
 
-void	ft_parse_line(char **tab, t_matrix **matrix, int x)
+void	ft_parse_line(char **tab, t_matrix **matrix, int x, t_size *size)
 {
 	int	i;
 
@@ -68,14 +68,16 @@ void	ft_parse_line(char **tab, t_matrix **matrix, int x)
 		else
 		{
 			matrix[i]->z = ft_atoi(tab[i]);
-			matrix[i]->color = 0;
+			matrix[i]->color = STD_COLOR;
 		}
+		matrix[i]->iso = ft_to_isometric(matrix[i], size);
+		matrix[i]->size = size;
 		i++;
 	}
 	ft_free_tab(tab);
 }
 
-void	ft_parse(char *map, t_matrix ***matrix)
+void	ft_parse(char *map, t_matrix ***matrix, t_size *size)
 {
 	int		i;
 	int		fd;
@@ -91,7 +93,7 @@ void	ft_parse(char *map, t_matrix ***matrix)
 			free(line);
 			break ;
 		}
-		ft_parse_line(ft_split(line, ' '), matrix[i], i);
+		ft_parse_line(ft_split(line, ' '), matrix[i], i, size);
 		i++;
 		free(line);
 	}
