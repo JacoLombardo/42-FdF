@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:23:32 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/09 17:05:25 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:34:14 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_init(t_matrix ***matrix, t_size *size)
 	t_vars	vars;
 	t_image	image;
 
-	(void)matrix;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "FdF Window");
 	image.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);

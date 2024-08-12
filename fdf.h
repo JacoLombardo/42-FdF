@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:24:19 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/09 16:32:44 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:54:03 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@
 # include "minilibx/mlx_int.h"
 # include <fcntl.h>
 # include <unistd.h>
+# include <math.h>
 
 /* # define WIDTH 640
 # define HEIGHT 480 */
 # define WIDTH 1920
 # define HEIGHT 1080
 # define STD_COLOR 0xFFFFFF
+# define BLUE 0x0000FF
+# define RED 0xFF0000
+# define ZOOM 20
+# define ANGLE 0.7854
 
 typedef struct s_matrix
 {
@@ -71,6 +76,9 @@ typedef struct s_line
 	int				y2;
 	int				dx;
 	int				dy;
+	int				sx;
+	int				sy;
+	int				err;
 	int				color1;
 	int				color2;
 	int				step;
@@ -89,6 +97,8 @@ int					ft_handle_hooks(int keycode, t_vars *vars);
 t_2D				*ft_to_isometric(t_matrix *point, t_size *size);
 
 /* libx */
+void				ft_print_line(t_matrix *first, t_matrix *second,
+						t_image *image);
 void				ft_mlx_pixel_put(t_image *data, int x, int y, int color);
 void				ft_create_img(t_matrix ***matrix, t_size *size,
 						t_image *image);
