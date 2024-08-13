@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:23:18 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/13 10:46:35 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:38:03 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_matrix	***ft_free_matrix(t_matrix ***matrix, t_size *size)
 	}
 	free(matrix);
 	matrix = NULL;
+	free(size);
 	return (NULL);
 }
 
@@ -59,6 +60,7 @@ t_matrix	***ft_free_that_matrix(t_matrix ***matrix, int i, int j,
 	}
 	free(matrix);
 	matrix = NULL;
+	free(size);
 	return (NULL);
 }
 

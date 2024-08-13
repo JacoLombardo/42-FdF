@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:24:19 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/13 16:27:52 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:37:15 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ typedef struct s_vars
 {
 	void			*mlx;
 	void			*win;
+	t_matrix		***matrix;
+	t_size			*size;
+	t_image			*image;
 }					t_vars;
 
 typedef struct s_line
@@ -104,7 +107,7 @@ void				ft_draw_line(t_line *line, t_image *image);
 void				ft_print_line(t_matrix *p1, t_matrix *p2, t_image *image);
 
 /* hooks */
-int					close_window(void *param);
+int					ft_close_window(t_vars *vars);
 void				ft_close(t_vars *vars);
 int					ft_handle_hooks(int keycode, t_vars *vars);
 
@@ -140,5 +143,7 @@ void				ft_parse_line(char **tab, t_matrix ***matrix, int x,
 void				ft_parse(char *map, t_matrix ***matrix, t_size *size);
 
 /* fdf */
+void				ft_init(t_matrix ***matrix, t_size *size);
+void				fdf(char *map);
 
 #endif

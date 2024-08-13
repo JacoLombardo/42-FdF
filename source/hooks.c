@@ -6,15 +6,17 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:46:21 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/13 17:12:53 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:35:28 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int	close_window(void *param)
+int	ft_close_window(t_vars *vars)
 {
-	(void)param;
+	mlx_destroy_image(vars->mlx, vars->image->img);
+	mlx_destroy_window(vars->mlx, vars->win);
+	ft_free_matrix(vars->matrix, vars->size);
 	exit(0);
 	return (0);
 }
@@ -27,10 +29,11 @@ void	ft_close(t_vars *vars)
 
 int	ft_handle_hooks(int keycode, t_vars *vars)
 {
-	//printf("Hello, I'm %i!\n", keycode);
 	if (keycode == ESC)
 	{
+		mlx_destroy_image(vars->mlx, vars->image->img);
 		mlx_destroy_window(vars->mlx, vars->win);
+		ft_free_matrix(vars->matrix, vars->size);
 		exit(0);
 	}
 	return (0);
