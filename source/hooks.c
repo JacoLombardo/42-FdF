@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:46:21 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/09 15:36:47 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:12:53 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_close(t_vars *vars)
 
 int	ft_handle_hooks(int keycode, t_vars *vars)
 {
-	printf("Hello, I'm %i!\n", keycode);
+	//printf("Hello, I'm %i!\n", keycode);
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);

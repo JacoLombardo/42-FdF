@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:23:18 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/09 12:52:34 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:46:35 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ t_matrix	***ft_free_that_matrix(t_matrix ***matrix, int i, int j,
 		else
 			l = size->y;
 		while (--l >= 0)
+		{
 			free(matrix[k][l]);
+		}
 		free(matrix[k]);
 		k--;
 	}

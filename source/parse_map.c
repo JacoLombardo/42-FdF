@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 19:20:02 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/12 17:28:50 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:14:45 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,31 @@ unsigned int	ft_hex_to_int(char *hex)
 	return (result);
 }
 
-void	ft_parse_line(char **tab, t_matrix **matrix, int x, t_size *size)
+void	ft_parse_line(char **tab, t_matrix ***matrix, int y, t_size *size)
 {
-	int	i;
+	int	x;
 
-	i = 0;
-	while (tab[i])
+	x = 0;
+	while (tab[x])
 	{
-		matrix[i]->x = x;
-		matrix[i]->y = i;
-		if (ft_strrchr(tab[i], ','))
+		matrix[x][y]->x = x;
+		matrix[x][y]->y = y;
+		if (ft_strrchr(tab[x], ','))
 		{
-			matrix[i]->z = ft_atoi(tab[i]);
-			matrix[i]->color = ft_hex_to_int(ft_strrchr(tab[i], ',') + 1);
+			matrix[x][y]->z = ft_atoi(tab[x]);
+			matrix[x][y]->color = ft_hex_to_int(ft_strrchr(tab[x], ',') + 1);
 		}
 		else
 		{
-			matrix[i]->z = ft_atoi(tab[i]);
-			matrix[i]->color = STD_COLOR;
+			matrix[x][y]->z = ft_atoi(tab[x]);
+			if (matrix[x][y]->z > 10)
+				matrix[x][y]->color = BLUE;
+			else
+				matrix[x][y]->color = STD_COLOR;
 		}
-		matrix[i]->iso = ft_to_isometric(matrix[i], size);
-		matrix[i]->size = size;
-		i++;
+		matrix[x][y]->iso = ft_to_isometric(matrix[x][y]);
+		matrix[x][y]->size = size;
+		x++;
 	}
 	ft_free_tab(tab);
 }
@@ -93,7 +96,7 @@ void	ft_parse(char *map, t_matrix ***matrix, t_size *size)
 			free(line);
 			break ;
 		}
-		ft_parse_line(ft_split(line, ' '), matrix[i], i, size);
+		ft_parse_line(ft_split(line, ' '), matrix, i, size);
 		i++;
 		free(line);
 	}

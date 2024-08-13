@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:23:32 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/12 17:34:14 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:11:43 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void	ft_init(t_matrix ***matrix, t_size *size)
 	mlx_key_hook(vars.win, ft_handle_hooks, &vars);
 	mlx_hook(vars.win, 17, 0, close_window, NULL);
 	mlx_loop(vars.mlx);
+	/* mlx_destroy_image(vars.mlx, image.img);
+	mlx_destroy_window(vars.mlx, vars.win);
+	free(image.addr); */
 }
 
 void	fdf(char *map)
@@ -35,8 +38,8 @@ void	fdf(char *map)
 	t_size		*size;
 
 	size = (t_size *)malloc(1 * sizeof(t_size));
-	size->x = ft_get_rows(map);
-	size->y = ft_get_columns(map);
+	size->x = ft_get_columns(map);
+	size->y = ft_get_rows(map);
 	matrix = ft_malloc(size);
 	ft_parse(map, matrix, size);
 	ft_init(matrix, size);

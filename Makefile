@@ -11,9 +11,9 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 LFLAGS	= -L$(MINILIBX_PATH) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
-SRCS = fdf.c source/calculate_map.c source/hooks.c source/isometric.c source/libx.c source/parse_map.c source/malloc.c
+SRCS = fdf.c source/calculate_map.c source/draw_line.c source/hooks.c source/isometric.c source/libx.c source/limits.c source/parse_map.c source/malloc.c
 HEADER = fdf.h
 NAME = fdf
 LIBFT_PATH = libft
