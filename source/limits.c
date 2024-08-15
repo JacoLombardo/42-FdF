@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:05:23 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/13 16:15:29 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/15 13:30:11 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_calc_max_width(t_matrix ***matrix, t_size *size, t_limits *limits)
 		{
 			if (matrix[i][j]->iso->x > max)
 				max = matrix[i][j]->iso->x;
-			if (matrix[i][j]->iso->y < min)
-				min = matrix[i][j]->iso->y;
+			if (matrix[i][j]->iso->x < min)
+				min = matrix[i][j]->iso->x;
 			j++;
 		}
 		i++;
@@ -64,4 +64,21 @@ void	ft_calc_max_height(t_matrix ***matrix, t_size *size, t_limits *limits)
 	}
 	limits->max_y = max;
 	limits->min_y = min;
+}
+
+t_limits	*ft_calc_limits(t_matrix ***matrix, t_size *size)
+{
+	t_limits	*limits;
+	int			zoom;
+
+	limits = (t_limits *)malloc(1 * sizeof(t_limits));
+	ft_calc_max_width(matrix, size, limits);
+	ft_calc_max_height(matrix, size, limits);
+	zoom = round(ft_zoom(limits));
+	limits->max_x *= zoom;
+	limits->min_x *= zoom;
+	limits->max_y *= zoom;
+	limits->min_y *= zoom;
+	limits->zoom = zoom;
+	return (limits);
 }

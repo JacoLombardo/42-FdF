@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:23:32 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/13 17:35:42 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/15 13:25:05 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	ft_init(t_matrix ***matrix, t_size *size)
 			&image.line_length, &image.endian);
 	ft_create_img(matrix, size, &image);
 	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
-	vars.matrix = matrix;
-	vars.size = size;
 	vars.image = &image;
 	mlx_key_hook(vars.win, ft_handle_hooks, &vars);
 	mlx_hook(vars.win, 17, 0, ft_close_window, &vars);
@@ -44,9 +42,11 @@ void	fdf(char *map)
 	size->x = ft_get_columns(map);
 	size->y = ft_get_rows(map);
 	matrix = ft_malloc(size);
-	ft_parse(map, matrix, size);
+	if (!matrix)
+		return ;
+	ft_parse(map, matrix);
 	ft_init(matrix, size);
-	ft_free_matrix(matrix, size);
+	//ft_free_matrix(matrix, size);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:43:52 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/13 16:43:18 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/15 13:23:13 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ void	ft_create_img(t_matrix ***matrix, t_size *size, t_image *image)
 	int			y;
 	t_limits	*limits;
 
-	limits = (t_limits *)malloc(1 * sizeof(t_limits));
-	ft_calc_max_width(matrix, size, limits);
-	ft_calc_max_height(matrix, size, limits);
+	limits = ft_calc_limits(matrix, size);
 	x = 0;
 	while (x < size->x)
 	{
@@ -57,11 +55,12 @@ void	ft_create_img(t_matrix ***matrix, t_size *size, t_image *image)
 		while (y < size->y)
 		{
 			free(matrix[x][y]->iso);
-			matrix[x][y]->iso = ft_to_isometric_2(matrix[x][y], limits);
+			matrix[x][y]->iso = ft_zoom_n_center(matrix[x][y], limits);
 			y++;
 		}
 		x++;
 	}
 	ft_fill(matrix, size, image);
 	free(limits);
+	ft_free_matrix(matrix, size);
 }
