@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:46:21 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/15 13:25:28 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:05:22 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,16 @@
 
 int	ft_close_window(t_vars *vars)
 {
-	mlx_destroy_image(vars->mlx, vars->image->img);
-	mlx_destroy_window(vars->mlx, vars->win);
-	free(vars->mlx);
+	ft_close_libx(vars);
 	exit(0);
 	return (0);
-}
-
-void	ft_close(t_vars *vars)
-{
-	mlx_destroy_window(vars->mlx, vars->win);
-	exit(0);
 }
 
 int	ft_handle_hooks(int keycode, t_vars *vars)
 {
 	if (keycode == ESC)
 	{
-		mlx_destroy_image(vars->mlx, vars->image->img);
-		mlx_destroy_window(vars->mlx, vars->win);
-		free(vars->mlx);
+		ft_close_libx(vars);
 		exit(0);
 	}
 	return (0);
