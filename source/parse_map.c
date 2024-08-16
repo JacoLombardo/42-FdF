@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 19:20:02 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/15 13:12:30 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 10:45:33 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,15 @@ void	ft_parse_line(char **tab, t_matrix ***matrix, int y)
 	{
 		matrix[x][y]->x = x;
 		matrix[x][y]->y = y;
+		matrix[x][y]->z = ft_atoi(tab[x]);
 		if (ft_strrchr(tab[x], ','))
-		{
-			matrix[x][y]->z = ft_atoi(tab[x]);
 			matrix[x][y]->color = ft_hex_to_int(ft_strrchr(tab[x], ',') + 1);
-		}
 		else
 		{
-			matrix[x][y]->z = ft_atoi(tab[x]);
 			if (matrix[x][y]->z > 10)
 				matrix[x][y]->color = BLUE;
+			else if (matrix[x][y]->z < 0)
+				matrix[x][y]->color = RED;
 			else
 				matrix[x][y]->color = STD_COLOR;
 		}
@@ -93,7 +92,7 @@ void	ft_parse(char *map, t_matrix ***matrix)
 		if (!line)
 		{
 			free(line);
-			break ;
+			return ;
 		}
 		ft_parse_line(ft_split(line, ' '), matrix, i);
 		i++;

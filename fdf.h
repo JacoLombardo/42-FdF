@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:24:19 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/15 15:05:58 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:01:50 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "minilibx/mlx_int.h"
 # include <fcntl.h>
 # include <math.h>
-# include <unistd.h>
 
 /* # define WIDTH 640
 # define HEIGHT 480 */
@@ -30,8 +29,6 @@
 # define STD_COLOR 0xFFFFFF
 # define BLUE 0x0000FF
 # define RED 0xFF0000
-# define ZOOM 20
-# define ANGLE 0.7854
 # define COS 0.707105
 # define SIN 0.707108
 
@@ -98,13 +95,16 @@ typedef struct s_line
 }				t_line;
 
 /* calculate_map */
-int				ft_get_rows(char *map);
-int				ft_get_columns(char *map);
+int				ft_get_columns(char *line);
+t_size			*ft_calc_map(char *map);
 
-/* draw_line */
+/* draw */
 t_line			*ft_to_line(t_line *line, t_matrix *p1, t_matrix *p2);
 void			ft_draw_line(t_line *line, t_image *image);
 void			ft_print_line(t_matrix *p1, t_matrix *p2, t_image *image);
+void			ft_print_line(t_matrix *first, t_matrix *second,
+					t_image *image);
+void			ft_create_img(t_matrix ***matrix, t_size *size, t_image *image);
 
 /* hooks */
 int				ft_close_window(t_vars *vars);
@@ -116,10 +116,9 @@ t_2D			*ft_zoom_n_center(t_matrix *point, t_limits *limits);
 t_2D			*ft_to_isometric(t_matrix *point);
 
 /* libx */
+void			ft_close_libx(t_vars *vars);
 void			ft_mlx_pixel_put(t_image *data, int x, int y, int color);
-void			ft_print_line(t_matrix *first, t_matrix *second,
-					t_image *image);
-void			ft_create_img(t_matrix ***matrix, t_size *size, t_image *image);
+void			ft_init_libx(t_matrix ***matrix, t_size *size);
 
 /* limits */
 void			ft_calc_max_width(t_matrix ***matrix, t_size *size,
@@ -141,8 +140,6 @@ void			ft_parse_line(char **tab, t_matrix ***matrix, int x);
 void			ft_parse(char *map, t_matrix ***matrix);
 
 /* fdf */
-void			ft_close_libx(t_vars *vars);
-void			ft_init_libx(t_matrix ***matrix, t_size *size);
 void			fdf(char *map);
 
 #endif
