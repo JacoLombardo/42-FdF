@@ -6,13 +6,13 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 19:20:02 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 11:21:57 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:02:38 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	ft_free_tab(char **tab)
+int	ft_free_tab(char **tab)
 {
 	int	i;
 
@@ -24,6 +24,7 @@ void	ft_free_tab(char **tab)
 	}
 	free(tab);
 	tab = NULL;
+	return (1);
 }
 
 unsigned int	ft_hex_to_int(char *hex)
@@ -51,7 +52,7 @@ unsigned int	ft_hex_to_int(char *hex)
 	return (result);
 }
 
-void	ft_parse_line(char **tab, t_matrix ***matrix, int y)
+int	ft_parse_line(char **tab, t_matrix ***matrix, int y)
 {
 	int	x;
 
@@ -73,12 +74,14 @@ void	ft_parse_line(char **tab, t_matrix ***matrix, int y)
 				matrix[x][y]->color = STD_COLOR;
 		}
 		matrix[x][y]->iso = ft_to_isometric(matrix[x][y]);
+		if (!matrix[x][y]->iso)
+			return (0);
 		x++;
 	}
-	ft_free_tab(tab);
+	return (ft_free_tab(tab));
 }
 
-void	ft_parse(char *map, t_matrix ***matrix)
+int	ft_parse(char *map, t_matrix ***matrix)
 {
 	int		i;
 	int		fd;
@@ -90,9 +93,11 @@ void	ft_parse(char *map, t_matrix ***matrix)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return ;
-		ft_parse_line(ft_split(line, ' '), matrix, i);
+			break ;
+		if (!ft_parse_line(ft_split(line, ' '), matrix, i))
+			return (0);
 		i++;
 		free(line);
 	}
+	return (1);
 }

@@ -6,13 +6,13 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:05:23 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 11:22:20 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:26:23 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	ft_maxmin_width(t_matrix ***matrix, t_size *size, t_limits *limits)
+void	ft_maxmin_width(t_matrix ***matrix, t_2D *size, t_limits *limits)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ void	ft_maxmin_width(t_matrix ***matrix, t_size *size, t_limits *limits)
 	limits->min_x = min;
 }
 
-void	ft_maxmin_height(t_matrix ***matrix, t_size *size, t_limits *limits)
+void	ft_maxmin_height(t_matrix ***matrix, t_2D *size, t_limits *limits)
 {
 	int	i;
 	int	j;
@@ -66,7 +66,7 @@ void	ft_maxmin_height(t_matrix ***matrix, t_size *size, t_limits *limits)
 	limits->min_y = min;
 }
 
-t_limits	*ft_calc_limits(t_matrix ***matrix, t_size *size)
+t_limits	*ft_calc_limits(t_matrix ***matrix, t_2D *size)
 {
 	t_limits	*limits;
 	int			zoom;

@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:06:18 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 11:15:36 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:25:47 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_print_line(t_matrix *p1, t_matrix *p2, t_image *image)
 	free(line);
 }
 
-void	ft_fill(t_matrix ***matrix, t_size *size, t_image *image)
+void	ft_fill(t_matrix ***matrix, t_2D *size, t_image *image)
 {
 	int	x;
 	int	y;
@@ -90,7 +90,7 @@ void	ft_fill(t_matrix ***matrix, t_size *size, t_image *image)
 	}
 }
 
-void	ft_create_img(t_matrix ***matrix, t_size *size, t_image *image)
+void	ft_create_img(t_matrix ***matrix, t_2D *size, t_image *image)
 {
 	int			x;
 	int			y;

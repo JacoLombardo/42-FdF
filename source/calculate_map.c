@@ -6,11 +6,19 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 19:21:16 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 11:04:54 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:00:56 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+t_2D	*ft_handle_invalid(int fd, t_2D *size)
+{
+	close(fd);
+	free(size);
+	ft_printf("ERROR: Invalid Map\n");
+	return (NULL);
+}
 
 int	ft_get_columns(char *line)
 {
@@ -25,18 +33,16 @@ int	ft_get_columns(char *line)
 	return (i);
 }
 
-t_size	*ft_calc_map(char *map)
+t_2D	*ft_calc_map(char *map, t_2D *size)
 {
 	int		i;
 	int		fd;
 	char	*line;
-	t_size	*size;
 
 	i = 0;
-	size = (t_size *)malloc(1 * sizeof(t_size));
-	if (!size)
-		return (NULL);
 	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		return (ft_handle_invalid(fd, size));
 	while (1)
 	{
 		line = get_next_line(fd);

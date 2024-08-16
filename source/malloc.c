@@ -6,13 +6,13 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:23:18 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 11:21:23 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:26:34 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-t_matrix	***ft_free_matrix(t_matrix ***matrix, t_size *size)
+t_matrix	***ft_free_matrix(t_matrix ***matrix, t_2D *size)
 {
 	int	i;
 	int	j;
@@ -36,8 +36,7 @@ t_matrix	***ft_free_matrix(t_matrix ***matrix, t_size *size)
 	return (NULL);
 }
 
-t_matrix	***ft_free_that_matrix(t_matrix ***matrix, int i, int j,
-		t_size *size)
+t_matrix	***ft_free_that_matrix(t_matrix ***matrix, int i, int j, t_2D *size)
 {
 	int	k;
 	int	l;
@@ -64,7 +63,7 @@ t_matrix	***ft_free_that_matrix(t_matrix ***matrix, int i, int j,
 	return (NULL);
 }
 
-t_matrix	***ft_malloc(t_size *size)
+t_matrix	***ft_malloc(t_2D *size)
 {
 	int			i;
 	int			j;
