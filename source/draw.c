@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:06:18 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 11:00:07 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:15:36 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	ft_print_line(t_matrix *p1, t_matrix *p2, t_image *image)
 	t_line	*line;
 
 	line = (t_line *)malloc(1 * sizeof(t_line));
+	if (!line)
+		return ;
 	line = ft_to_line(line, p1, p2);
 	ft_draw_line(line, image);
 	free(line);

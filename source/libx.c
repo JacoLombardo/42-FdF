@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:43:52 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 11:00:29 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:08:33 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ void	ft_init_libx(t_matrix ***matrix, t_size *size)
 	mlx_loop(vars.mlx);
 	ft_close_libx(&vars);
 }
-

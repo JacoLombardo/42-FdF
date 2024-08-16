@@ -6,14 +6,13 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:24:19 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 11:01:50 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:24:36 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "hooks.h"
 # include "libft/libft.h"
 # include "minilibx/mlx.h"
 # include "minilibx/mlx_int.h"
@@ -31,6 +30,7 @@
 # define RED 0xFF0000
 # define COS 0.707105
 # define SIN 0.707108
+# define ESC 65307
 
 typedef struct s_matrix
 {
@@ -91,7 +91,6 @@ typedef struct s_line
 	int			err;
 	int			color1;
 	int			color2;
-	int			step;
 }				t_line;
 
 /* calculate_map */
@@ -121,9 +120,9 @@ void			ft_mlx_pixel_put(t_image *data, int x, int y, int color);
 void			ft_init_libx(t_matrix ***matrix, t_size *size);
 
 /* limits */
-void			ft_calc_max_width(t_matrix ***matrix, t_size *size,
+void			ft_maxmin_width(t_matrix ***matrix, t_size *size,
 					t_limits *limits);
-void			ft_calc_max_height(t_matrix ***matrix, t_size *size,
+void			ft_maxmin_height(t_matrix ***matrix, t_size *size,
 					t_limits *limits);
 t_limits		*ft_calc_limits(t_matrix ***matrix, t_size *size);
 

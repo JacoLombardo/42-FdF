@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 11:23:18 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/13 17:38:03 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:21:23 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ t_matrix	***ft_malloc(t_size *size)
 
 	i = 0;
 	matrix = (t_matrix ***)malloc(size->x * sizeof(t_matrix **));
+	if (!matrix)
+		return (NULL);
 	while (i < size->x)
 	{
 		j = 0;

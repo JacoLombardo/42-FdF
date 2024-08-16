@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 10:17:58 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/02 16:36:13 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:07:53 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void					ft_putendl_fd(char *s, int fd);
 void					ft_putnbr_fd(int n, int fd);
 
 /* LINKED LIST */
-
 typedef struct s_list
 {
 	void				*content;
@@ -75,9 +74,7 @@ void					ft_lstiter(t_list *lst, void (*f)(void *));
 t_list					*ft_lstmap(t_list *lst, void *(*f)(void *),
 							void (*del)(void *));
 
-
 /* GET NEXT LINE */
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
@@ -99,7 +96,6 @@ char					*ft_strchr_gnl(char *s, int c);
 void					ft_free_buff(t_list_gnl **buff, int fd);
 
 /* FT_PRINTF */
-
 int						ft_printf(const char *format, ...);
 int						ft_print_c(char c);
 int						ft_print_s(char *s);

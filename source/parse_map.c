@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 19:20:02 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 10:45:33 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:21:57 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,7 @@ void	ft_parse(char *map, t_matrix ***matrix)
 	{
 		line = get_next_line(fd);
 		if (!line)
-		{
-			free(line);
 			return ;
-		}
 		ft_parse_line(ft_split(line, ' '), matrix, i);
 		i++;
 		free(line);

@@ -6,13 +6,13 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:05:23 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/15 13:30:11 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:22:20 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	ft_calc_max_width(t_matrix ***matrix, t_size *size, t_limits *limits)
+void	ft_maxmin_width(t_matrix ***matrix, t_size *size, t_limits *limits)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ void	ft_calc_max_width(t_matrix ***matrix, t_size *size, t_limits *limits)
 	limits->min_x = min;
 }
 
-void	ft_calc_max_height(t_matrix ***matrix, t_size *size, t_limits *limits)
+void	ft_maxmin_height(t_matrix ***matrix, t_size *size, t_limits *limits)
 {
 	int	i;
 	int	j;
@@ -72,8 +72,10 @@ t_limits	*ft_calc_limits(t_matrix ***matrix, t_size *size)
 	int			zoom;
 
 	limits = (t_limits *)malloc(1 * sizeof(t_limits));
-	ft_calc_max_width(matrix, size, limits);
-	ft_calc_max_height(matrix, size, limits);
+	if (!limits)
+		return (NULL);
+	ft_maxmin_width(matrix, size, limits);
+	ft_maxmin_height(matrix, size, limits);
 	zoom = round(ft_zoom(limits));
 	limits->max_x *= zoom;
 	limits->min_x *= zoom;
