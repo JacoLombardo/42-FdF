@@ -6,7 +6,7 @@
 /*   By: jalombar <jalombar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 19:21:16 by jalombar          #+#    #+#             */
-/*   Updated: 2024/08/16 10:57:29 by jalombar         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:04:54 by jalombar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_size	*ft_calc_map(char *map)
 		free(line);
 	}
 	size->y = i;
-	ft_printf("X: %i, Y: %i\n", size->x, size->y);
 	close(fd);
 	return (size);
 }
